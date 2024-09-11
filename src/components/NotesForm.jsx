@@ -61,6 +61,17 @@ const NotesForm = () => {
 	};
 
 	useEffect(() => {
+		if (showAlert) {
+			const handleAlert = () => {
+				setTimeout(() => {
+					setShowAlert(false)
+				}, 2000)
+			}
+			handleAlert()
+		}
+	}, [showAlert])
+
+	useEffect(() => {
 		if (noteToEdit) {
 			setNewNoteTitle(noteToEdit.title);
 			setNewNoteDescription(noteToEdit.description);
@@ -110,7 +121,7 @@ const NotesForm = () => {
 					</select>
 				</li>
 			</ul>
-			{showAlert ? <small>Please fill in all fields the form</small> : ""}
+			{showAlert ? <small>Please fill in all the fields</small> : ""}
 			<button type="submit" className="bg-slate-700 text-white w-60 py-1 rounded">
 				{editingId !== null ? "Edit Note" : "Create Note"}
 			</button>
